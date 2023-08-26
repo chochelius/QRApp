@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import Home from '../screens/home';
-import Creator from '../screens/creator';
-import Reader from '../screens/reader';
+import Home from '../screens/Home';
+import Creator from '../screens/Creator';
+import Reader from '../screens/Reader';
 
 const AppRouter = () => {
     return (
