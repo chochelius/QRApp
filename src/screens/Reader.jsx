@@ -5,36 +5,52 @@ const Reader = () => {
 
     const [data, setData] = useState('');
 
-    return (
-        <div>
-            <h1 className='text-center mt-5'>Lector QR </h1>
-            <div className="container" style={{ width: '70vh' }}>
-                <div className="row w-auto">
-                    <div className="col-12 ">
-                        <div className="card mt-1 ">
-                            <div className="card-body">
-                                <QrReader
-                                    constraints={{ facingMode: 'environment' }}
-                                    delay={300}
-                                    style={{ width: '100%' }}
-                                    onResult={(result, error) => {
-                                        if (result) {
-                                            setData(result?.text);
-                                        }
 
-                                        if (error) {
-                                            console.info(error);
-                                        }
-                                    }}
-                                />
-                                <p className="card-text bg-primary text-white ps-1">Scanned Data: <br />- {data} </p>
-                            </div>
+    return (
+        <div className="mt-2 d-flex-md" style={{ width: "100vw" }}>
+                <div className="card bg-dark text-white border-black ">
+            <div className='row g-0 '>
+                    <div className="col-sm-8 bg-dark align-self-center">
+                        <div className="container">
+                            <QrReader
+                                constraints={{ facingMode: 'environment' }}
+                                delay={300}
+
+                                showViewFinder={true}
+                                onResult={(result, error) => {
+                                    if (result) {
+                                        setData(result?.text);
+                                    }
+
+                                    if (error) {
+                                        console.info(error);
+                                    }
+                                }}
+
+                            />
+                        </div>
+
+                    </div>
+
+                    <div className="col-sm-4 align-self-center">
+                        <div className="card-body bg-dark">
+                            <h3 className="card-title">Lector de QR</h3>
+                            <p className="card-text h">
+                                Escanea el código QR para ver la información que contiene
+                            </p>
+                            <p className="card-text bg-primary text-white ps-1">
+
+                                <br />
+                                -  {data?.includes('http' || 'https' || 'www') ?
+                                    `<a href=${data} target="_blank" rel="noreferrer">${data}</a>` : data}
+                            </p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     )
 }
 
-export default Reader
+export default Reader;
