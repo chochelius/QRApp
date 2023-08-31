@@ -8,8 +8,8 @@ const Reader = () => {
 
     return (
         <div className="mt-2 d-flex-md" style={{ width: "100vw" }}>
-                <div className="card bg-dark text-white border-black ">
-            <div className='row g-0 '>
+            <div className="card bg-dark text-white border-black ">
+                <div className='row g-0 '>
                     <div className="col-sm-8 bg-dark align-self-center">
                         <div className="container">
                             <QrReader
@@ -39,11 +39,15 @@ const Reader = () => {
                                 Escanea el código QR para ver la información que contiene
                             </p>
                             <p className="card-text bg-primary text-white ps-1">
-
                                 <br />
-                                -  {data?.includes('http' || 'https' || 'www') ?
-                                    `<a href=${data} target="_blank" rel="noreferrer">${data}</a>` : data}
+                                {/* 
+                                if (data) is a link then show a button to open it in a new tab
+                                else show the data
+                                 */}
                             </p>
+                            {data?.includes('http' || 'https' || 'www' || '.com' || '.cl' || '.net' || '.org' || '.io' || '.dev' || '.edu' || '.gov') ? (<><p className="text-white">- {data}</p><a href={data} target="_blank" rel="noreferrer" className="btn btn-primary">Abrir enlace</a></>) : (<p className="text-white">{data}</p>)}
+
+
                         </div>
                     </div>
 
